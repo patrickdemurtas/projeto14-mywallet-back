@@ -36,7 +36,7 @@ export async function signIn(req,res){
         const token = uuidV4();
         await db.collection("sessoes").insertOne({ idUsuario: isUserExists._id, token })
 
-        return res.status(200).send(token)
+        return res.status(200).send({ token: token, name: isUserExists.name })
 
     } catch (error) {
         res.status(500).send(error.message)
